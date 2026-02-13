@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LuxeWear – Premium Clothing Store</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans:wght@300;400&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #0e0e0e;
+      color: #f5f5f5;
+    }
+
+    header {
+      background: black;
+      color: #d4af37;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      color: #f5f5f5;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 300;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1500&q=80') center/cover;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #fff;
+      background: rgba(0,0,0,0.5);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+    }
+
+    .btn {
+      background-color: #d4af37;
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #b9952e;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 3rem;
+    }
+
+    .product {
+      background: #1a1a1a;
+      border-radius: 10px;
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .product h3 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+    }
+
+    footer {
+      background: black;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    #cart {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #d4af37;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #cart-items {
+      position: fixed;
+      right: 1rem;
+      top: 4rem;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      display: none;
+      width: 250px;
+    }
+
+    #cart-items ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #cart-items ul li {
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5rem;
+    }
+
+    #cart-items button {
+      background: #d4af37;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>LuxeWear</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Login</a>
+      <a href="#">Admin</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Redefine Luxury Fashion</h2>
+    <button class="btn">Shop Now</button>
+  </div>
+
+  <div id="cart">🛒 Cart (<span id="cart-count">0</span>)</div>
+  <div id="cart-items">
+    <h3>Your Cart</h3>
+    <ul id="cart-list"></ul>
+    <button onclick="checkout()">Checkout</button>
+  </div>
+
+  <section class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1520975918318-7b16e1af8e3f?auto=format&fit=crop&w=600&q=80" alt="Product 1">
+      <h3>Silk Blazer</h3>
+      <p>$250</p>
+      <button class="btn" onclick="addToCart('Silk Blazer', 250)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Product 2">
+      <h3>Velvet Dress</h3>
+      <p>$320</p>
+      <button class="btn" onclick="addToCart('Velvet Dress', 320)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?auto=format&fit=crop&w=600&q=80" alt="Product 3">
+      <h3>Cashmere Sweater</h3>
+      <p>$180</p>
+      <button class="btn" onclick="addToCart('Cashmere Sweater', 180)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80" alt="Product 4">
+      <h3>Leather Jacket</h3>
+      <p>$490</p>
+      <button class="btn" onclick="addToCart('Leather Jacket', 490)">Add to Cart</button>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 LuxeWear. All rights reserved.
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      document.getElementById('cart-count').innerText = cart.length;
+    }
+
+    document.getElementById('cart').addEventListener('click', () => {
+      const cartBox = document.getElementById('cart-items');
+      cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+      updateCartDisplay();
+    });
+
+    function updateCartDisplay() {
+      const list = document.getElementById('cart-list');
+      list.innerHTML = '';
+      cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price}`;
+        list.appendChild(li);
+      });
+    }
+
+    function checkout() {
+      alert('Checkout successful! (demo only)');
+      cart = [];
+      document.getElementById('cart-count').innerText = 0;
+      document.getElementById('cart-items').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
