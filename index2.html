@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Special Surprise</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff8fa3;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --text-color: #590d22;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Game Stage */
+#game-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.instructions {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.instructions h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+}
+
+.score-board {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* hiding spots */
+.hiding-spots-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.hiding-spot {
+    font-size: 3.5rem;
+    cursor: pointer;
+}
+
+.hiding-spot.revealed {
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.4s;
+}
+
+/* Envelope */
+#envelope-stage {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    background: var(--primary-color);
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.open-btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Letter View */
+#letter-view {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#letter-view.active {
+    display: flex;
+}
+
+.love-letter {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.love-letter h2 {
+    font-family: 'Dancing Script';
+    font-size: 32px;
+}
+
+/* Forever Game Button */
+.forever-btn {
+    margin-top: 25px;
+    padding: 14px 40px;
+    font-size: 18px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg,#ff4d6d,#ff8fa3);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255,77,109,0.5);
+    transition: 0.3s;
+}
+
+.forever-btn:hover {
+    transform: scale(1.08);
+}
+</style>
+</head>
+
+<body>
+
+<!-- GAME -->
+<div id="game-stage">
+
+<div class="instructions">
+<h1>Find My Heart</h1>
+<p>Find all 3 hidden hearts ❤️</p>
+<div class="score-board">Hearts Found: <span id="counter">0</span>/3</div>
+</div>
+
+<div class="hiding-spots-container"></div>
+
+</div>
+
+<!-- ENVELOPE -->
+<div id="envelope-stage">
+
+<div class="envelope" onclick="openEnvelope()"></div>
+
+<button class="open-btn" onclick="openEnvelope()">Open Letter</button>
+
+</div>
+
+<!-- LETTER -->
+<div id="letter-view">
+
+<div class="love-letter">
+
+<h2>My Dearest Valentine ❤️</h2>
+
+<p>You found my hidden hearts...</p>
+
+<p>And now you hold my real heart forever.</p>
+
+<p>I love you endlessly.</p>
+
+<p>— Yours Forever</p>
+
+<!-- FOREVER GAME BUTTON -->
+<button class="forever-btn" onclick="openGameForever()">
+Forever Play Game 🎮
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let heartsFound = 0;
+const totalHearts = 3;
+
+const icons = ['🎁','💐','🧸','🌹','🍬','💌','🧁','☁️'];
+
+function initGame(){
+
+const container = document.querySelector('.hiding-spots-container');
+
+let shuffled = icons.sort(()=>Math.random()-0.5).slice(0,8);
+
+let heartPositions = new Set();
+
+while(heartPositions.size<3){
+heartPositions.add(Math.floor(Math.random()*8));
+}
+
+shuffled.forEach((icon,i)=>{
+
+let div = document.createElement("div");
+
+div.className="hiding-spot";
+
+div.innerText=icon;
+
+div.dataset.heart = heartPositions.has(i);
+
+div.onclick = ()=>checkSpot(div);
+
+container.appendChild(div);
+
+});
+
+}
+
+function checkSpot(el){
+
+if(el.dataset.heart==="true"){
+
+el.innerText="❤️";
+
+el.classList.add("revealed");
+
+heartsFound++;
+
+document.getElementById("counter").innerText=heartsFound;
+
+if(heartsFound===3){
+
+setTimeout(()=>{
+
+document.getElementById("game-stage").style.display="none";
+
+document.getElementById("envelope-stage").style.display="flex";
+
+},1000);
+
+}
+
+}else{
+
+el.style.opacity=0.3;
+
+}
+
+}
+
+function openEnvelope(){
+
+document.getElementById("letter-view").classList.add("active");
+
+}
+
+function openGameForever(){
+
+window.location.href="index3.html";
+
+}
+
+initGame();
+
+</script>
+
+</body>
+</html>
