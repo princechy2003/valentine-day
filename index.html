@@ -1,236 +1,1474 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Be My Valentine 💘</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northgate Academy — Excellence in Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --blue: #1a4a8a;
+    --sky: #2d7dd2;
+    --ice: #e8f4fd;
+    --frost: #f0f8ff;
+    --white: #ffffff;
+    --gray: #8a9bb0;
+    --light-gray: #f4f7fb;
+    --border: #d0dff0;
+    --shadow: 0 4px 24px rgba(26,74,138,0.10);
+    --shadow-lg: 0 12px 48px rgba(26,74,138,0.18);
+  }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-  <!-- Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    background: var(--white);
+    overflow-x: hidden;
+  }
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow); }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
-      background-size: 400% 400%;
-      animation: bgMove 12s ease infinite;
-      font-family: "Poppins", sans-serif;
-      overflow: hidden;
-    }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 72px;
+  }
 
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  .logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
 
-    .card {
-      width: min(92%, 420px);
-      padding: 40px 30px 45px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(18px);
-      border-radius: 28px;
-      text-align: center;
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.25),
-        inset 0 0 0 1px rgba(255,255,255,0.4);
-      position: relative;
-      animation: cardIn 1.1s ease;
-    }
+  .logo-mark {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; color: white; font-size: 18px;
+    letter-spacing: -1px;
+    box-shadow: 0 4px 12px rgba(45,125,210,0.4);
+  }
 
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 16px; color: var(--navy);
+    line-height: 1.1;
+  }
+  .logo-sub { font-size: 10px; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 30px;
-      background: linear-gradient(120deg, #ff4d6d, #ff9a9e, #fbc2eb);
-      z-index: -1;
-      filter: blur(20px);
-      opacity: 0.7;
-    }
+  .nav-links {
+    display: flex; align-items: center; gap: 4px; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--navy);
+    font-size: 14px; font-weight: 500;
+    padding: 8px 16px; border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { background: var(--ice); color: var(--blue); }
+  .nav-links a.active { color: var(--sky); }
 
-    .emoji {
-      font-size: 68px;
-      margin-bottom: 12px;
-      animation: heartbeat 1.8s infinite;
-    }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    color: white !important;
+    padding: 10px 22px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 14px rgba(45,125,210,0.35);
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(45,125,210,0.45) !important;
+    background: var(--ice) !important;
+    color: white !important;
+  }
 
-    @keyframes heartbeat {
-      0%,100% { transform: scale(1); }
-      25% { transform: scale(1.08); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.12); }
-    }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; display: block; }
 
-    h2 {
-      font-family: "Playfair Display", serif;
-      font-size: 28px;
-      color: #4a1c2f;
-      margin-bottom: 30px;
-      line-height: 1.35;
-    }
+  /* ===== SECTIONS ===== */
+  .section { display: none; }
+  .section.active { display: block; }
 
-    .buttons {
-      position: relative;
-      height: 78px;
-    }
+  /* ===== HERO ===== */
+  #home { display: block; }
 
-    button {
-      position: absolute;
-      padding: 14px 36px;
-      border-radius: 40px;
-      border: none;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 55%, var(--sky) 100%);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding-top: 72px;
+  }
 
-    button:active {
-      transform: scale(0.94);
-    }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(45,125,210,0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+  }
 
-    #yes {
-      left: 12%;
-      background: linear-gradient(135deg, #ff4d6d, #ff758f);
-      color: #fff;
-      box-shadow: 0 15px 35px rgba(255,77,109,0.55);
-    }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
 
-    #yes:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(255,77,109,0.7);
-    }
+  .hero-shapes {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .shape {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    animation: float 8s ease-in-out infinite;
+  }
+  .shape-1 { width: 400px; height: 400px; top: -100px; right: -100px; animation-delay: 0s; }
+  .shape-2 { width: 250px; height: 250px; bottom: 100px; right: 15%; animation-delay: 2s; }
+  .shape-3 { width: 150px; height: 150px; top: 30%; left: 5%; animation-delay: 4s; }
 
-    #no {
-      left: 55%;
-      background: rgba(255,255,255,0.9);
-      color: #777;
-    }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
 
-    .hint {
-      margin-top: 28px;
-      font-size: 13px;
-      color: #6b6b6b;
-      font-style: italic;
-    }
+  .hero-content {
+    max-width: 1200px; margin: 0 auto; padding: 80px 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; position: relative; z-index: 1;
+  }
 
-    .heart {
-      position: absolute;
-      bottom: -20px;
-      animation: floatUp linear forwards;
-      pointer-events: none;
-    }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 16px; border-radius: 100px;
+    font-size: 12px; color: rgba(255,255,255,0.85);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: #4ade80; box-shadow: 0 0 8px #4ade80;
+  }
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-120vh) scale(1.8);
-        opacity: 0;
-      }
-    }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 68px); font-weight: 900;
+    color: white; line-height: 1.1; margin-bottom: 24px;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+  .hero-title span { color: #7dd3fc; }
 
-    @media (max-width: 480px) {
-      h2 { font-size: 23px; }
-      .emoji { font-size: 58px; }
-      button { padding: 12px 28px; font-size: 15px; }
-      #yes { left: 8%; }
-      #no { left: 55%; }
-    }
-  </style>
+  .hero-desc {
+    font-size: 17px; color: rgba(255,255,255,0.75);
+    line-height: 1.7; margin-bottom: 40px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .btn-primary {
+    background: white; color: var(--blue);
+    padding: 16px 32px; border-radius: 12px;
+    font-size: 15px; font-weight: 600;
+    text-decoration: none; cursor: pointer; border: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 16px 32px; border-radius: 12px;
+    font-size: 15px; font-weight: 500;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.1);
+    border-radius: 16px; overflow: hidden; margin-top: 48px;
+    animation: fadeUp 0.8s ease 0.4s both;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat {
+    background: rgba(10,22,40,0.4);
+    padding: 20px; text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 900; color: white; display: block;
+  }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; margin-top: 2px; display: block; }
+
+  .hero-card {
+    animation: fadeIn 1s ease 0.3s both;
+  }
+
+  .school-banner {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px; padding: 40px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+  }
+
+  .school-logo-large {
+    width: 100px; height: 100px;
+    background: white;
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .school-logo-large svg { width: 60px; height: 60px; }
+
+  .banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 900; color: white; margin-bottom: 8px;
+  }
+  .banner-year { font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 32px; }
+
+  .banner-items { list-style: none; text-align: left; }
+  .banner-items li {
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8); font-size: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .banner-items li:last-child { border-bottom: none; }
+  .banner-items li::before {
+    content: '✓'; background: rgba(74,222,128,0.2); color: #4ade80;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ===== FEATURES ===== */
+  .features {
+    background: var(--light-gray); padding: 100px 32px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-tag {
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--sky); font-weight: 600; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px); font-weight: 700;
+    color: var(--navy); margin-bottom: 16px; line-height: 1.2;
+  }
+  .section-desc { font-size: 16px; color: var(--gray); max-width: 520px; line-height: 1.7; margin-bottom: 60px; }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+
+  .feature-card {
+    background: white; border-radius: 20px; padding: 32px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--sky));
+    transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: var(--ice); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 20px;
+  }
+  .feature-title { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .feature-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+  /* ===== APPLY BANNER ===== */
+  .apply-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    padding: 80px 32px; text-align: center; position: relative; overflow: hidden;
+  }
+  .apply-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(45,125,210,0.3), transparent 70%);
+  }
+  .apply-banner .container { position: relative; }
+  .apply-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: white;
+    margin-bottom: 16px;
+  }
+  .apply-desc { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 40px; }
+  .apply-deadline {
+    display: inline-block;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px; padding: 8px 20px; font-size: 13px; color: #7dd3fc;
+    margin-bottom: 32px; letter-spacing: 0.5px;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 100%);
+    padding: 140px 32px 80px; text-align: center;
+  }
+  .about-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px); font-weight: 900; color: white; margin-bottom: 20px;
+  }
+  .about-hero p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+
+  .about-content { padding: 100px 32px; background: white; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-text p { font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
+
+  .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+  .value-item {
+    background: var(--ice); border-radius: 14px; padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .value-label { font-weight: 600; color: var(--navy); font-size: 14px; margin-bottom: 4px; }
+  .value-text { font-size: 13px; color: var(--gray); }
+
+  .about-image-block {
+    background: linear-gradient(135deg, var(--ice) 0%, white 100%);
+    border-radius: 24px; padding: 48px; border: 1px solid var(--border);
+    text-align: center;
+  }
+  .big-stat { font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 900; color: var(--blue); line-height: 1; }
+  .big-stat-label { font-size: 16px; color: var(--gray); margin-top: 8px; }
+
+  .about-stats-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    background: var(--light-gray); padding: 60px 32px;
+  }
+  .about-stat-item { text-align: center; }
+  .about-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px; font-weight: 900; color: var(--blue); display: block;
+  }
+  .about-stat-text { font-size: 14px; color: var(--gray); margin-top: 4px; }
+
+  /* ===== ACADEMICS ===== */
+  .academics-hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 100%);
+    padding: 140px 32px 80px; text-align: center;
+  }
+  .academics-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px); font-weight: 900; color: white; margin-bottom: 20px;
+  }
+  .academics-hero p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+
+  .programs { padding: 100px 32px; background: white; }
+  .programs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+
+  .program-card {
+    border: 1px solid var(--border); border-radius: 20px; padding: 36px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: white; position: relative; overflow: hidden;
+  }
+  .program-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .program-card-accent {
+    position: absolute; top: 0; right: 0; width: 80px; height: 80px;
+    background: var(--ice); border-radius: 0 20px 0 80px;
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    padding: 12px; font-size: 24px;
+  }
+  .program-grade {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sky); font-weight: 600; margin-bottom: 8px;
+  }
+  .program-name { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+  .program-desc { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+  .program-subjects { display: flex; flex-wrap: wrap; gap: 8px; }
+  .subject-tag {
+    background: var(--ice); color: var(--blue);
+    padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 500;
+  }
+
+  /* ===== ADMISSIONS ===== */
+  .admissions-hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 100%);
+    padding: 140px 32px 80px; text-align: center;
+  }
+  .admissions-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px); font-weight: 900; color: white; margin-bottom: 20px;
+  }
+  .admissions-hero p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+
+  .admissions-content { padding: 80px 32px; background: var(--light-gray); }
+  .admissions-layout { display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start; }
+
+  /* FORM */
+  .form-card {
+    background: white; border-radius: 24px; padding: 48px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+  }
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 6px;
+  }
+  .form-subtitle { font-size: 14px; color: var(--gray); margin-bottom: 36px; }
+
+  .form-section-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sky); font-weight: 600; margin: 28px 0 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .form-section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 16px; }
+
+  label {
+    display: block; font-size: 13px; font-weight: 500; color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .required { color: var(--sky); }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-size: 14px; font-family: 'DM Sans', sans-serif;
+    color: var(--navy); background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--sky);
+    box-shadow: 0 0 0 3px rgba(45,125,210,0.12);
+  }
+
+  textarea { resize: vertical; min-height: 100px; }
+  select { cursor: pointer; }
+
+  .file-upload {
+    border: 2px dashed var(--border); border-radius: 10px;
+    padding: 32px; text-align: center; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: var(--frost);
+  }
+  .file-upload:hover { border-color: var(--sky); background: var(--ice); }
+  .file-upload input { display: none; }
+  .file-icon { font-size: 32px; margin-bottom: 8px; }
+  .file-text { font-size: 14px; color: var(--gray); }
+  .file-text strong { color: var(--blue); }
+  .file-hint { font-size: 12px; color: var(--gray); margin-top: 6px; }
+
+  .form-submit {
+    margin-top: 32px;
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    color: white; border: none; width: 100%;
+    padding: 16px; border-radius: 12px;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 8px 24px rgba(45,125,210,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(45,125,210,0.45); }
+
+  .form-note { font-size: 12px; color: var(--gray); text-align: center; margin-top: 12px; }
+
+  /* Sidebar */
+  .sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+  .info-card {
+    background: white; border-radius: 20px; padding: 28px;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .info-card-title { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 16px; }
+
+  .timeline { list-style: none; }
+  .timeline li {
+    display: flex; gap: 14px; margin-bottom: 16px; font-size: 14px;
+  }
+  .timeline li:last-child { margin-bottom: 0; }
+  .tl-dot {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--ice); border: 2px solid var(--sky);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 11px; color: var(--blue); font-weight: 700;
+  }
+  .tl-info strong { display: block; color: var(--navy); font-size: 13px; font-weight: 500; }
+  .tl-info span { color: var(--gray); font-size: 12px; }
+
+  .req-list { list-style: none; }
+  .req-list li {
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    font-size: 13px; color: var(--gray);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .req-list li:last-child { border-bottom: none; }
+  .req-list li::before {
+    content: '📄'; font-size: 14px;
+  }
+
+  .deadline-card {
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    border-radius: 20px; padding: 28px; text-align: center; color: white;
+  }
+  .deadline-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; margin-bottom: 12px; }
+  .deadline-date { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; margin-bottom: 4px; }
+  .deadline-year { font-size: 14px; opacity: 0.75; }
+
+  /* Success */
+  .success-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(10,22,40,0.6);
+    z-index: 1000; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .success-overlay.show { display: flex; }
+  .success-modal {
+    background: white; border-radius: 24px; padding: 60px 48px;
+    max-width: 480px; width: 90%; text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+    animation: scaleIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes scaleIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .success-icon { font-size: 64px; margin-bottom: 20px; }
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700; color: var(--navy); margin-bottom: 12px;
+  }
+  .success-msg { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 32px; }
+  .success-ref {
+    background: var(--ice); border-radius: 10px; padding: 14px;
+    font-size: 13px; color: var(--blue); font-weight: 500; margin-bottom: 28px;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 100%);
+    padding: 140px 32px 80px; text-align: center;
+  }
+  .contact-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px); font-weight: 900; color: white; margin-bottom: 20px;
+  }
+  .contact-hero p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+
+  .contact-content { padding: 100px 32px; background: white; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+  .contact-info-item {
+    display: flex; gap: 16px; margin-bottom: 32px;
+  }
+  .contact-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--ice); display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .contact-info-label { font-size: 12px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .contact-info-value { font-size: 15px; font-weight: 500; color: var(--navy); }
+  .contact-info-value a { color: var(--sky); text-decoration: none; }
+
+  .map-container {
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+    height: 360px;
+  }
+  .map-container iframe { width: 100%; height: 100%; border: none; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy); padding: 60px 32px 32px;
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-top: 16px; }
+  .footer-heading { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.2s; cursor: pointer; }
+  .footer-links a:hover { color: #7dd3fc; }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.3); font-style: italic; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-card { display: none; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .admissions-layout { grid-template-columns: 1fr; }
+    .sidebar { grid-row: 1; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .about-stats-row { grid-template-columns: 1fr 1fr; }
+    .programs-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; flex-direction: column; background: white; position: absolute; top: 72px; left: 0; right: 0; padding: 20px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .features-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .about-stats-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
 </head>
-
 <body>
 
-  <div class="card">
-    <div class="emoji">🐱❤️</div>
-    <h2>Shris,<br>will you be my Valentine?</h2>
-
-    <div class="buttons">
-      <button id="yes">Yes 💖</button>
-      <button id="no">No 🙈</button>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="logo" href="#" onclick="showSection('home')">
+      <div class="logo-mark">N</div>
+      <div class="logo-text">
+        <span class="logo-name">Northgate Academy</span>
+        <span class="logo-sub">Est. 1985</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showSection('home')" class="active" id="nav-home">Home</a></li>
+      <li><a href="#" onclick="showSection('about')" id="nav-about">About Us</a></li>
+      <li><a href="#" onclick="showSection('admissions')" id="nav-admissions">Admissions</a></li>
+      <li><a href="#" onclick="showSection('academics')" id="nav-academics">Academics</a></li>
+      <li><a href="#" onclick="showSection('contact')" id="nav-contact">Contact</a></li>
+      <li><a href="#" class="nav-cta" onclick="showSection('admissions')">Apply Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
     </div>
+  </div>
+</nav>
 
-    <div class="hint">Some love stories don’t allow “no” ✨</div>
+<!-- ===== HOME ===== -->
+<div id="home" class="section active">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">Admissions Open · 2025–26</div>
+        <h1 class="hero-title">
+          Shaping <span>Tomorrow's</span><br>Leaders Today
+        </h1>
+        <p class="hero-desc">
+          At Northgate Academy, we cultivate curious minds and compassionate leaders through rigorous academics, innovative programs, and a vibrant school community.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="showSection('admissions')">
+            🎓 Apply for Admission
+          </button>
+          <button class="btn-secondary" onclick="showSection('about')">
+            Learn More →
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">1,800+</span>
+            <span class="stat-label">Students</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">98%</span>
+            <span class="stat-label">Pass Rate</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">40+</span>
+            <span class="stat-label">Years Strong</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="school-banner">
+          <div class="school-logo-large">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 5L5 20v4l25-14 25 14v-4L30 5z" fill="#1a4a8a"/>
+              <rect x="10" y="24" width="8" height="20" rx="1" fill="#2d7dd2"/>
+              <rect x="26" y="20" width="8" height="24" rx="1" fill="#1a4a8a"/>
+              <rect x="42" y="24" width="8" height="20" rx="1" fill="#2d7dd2"/>
+              <rect x="8" y="43" width="44" height="4" rx="1" fill="#0a1628"/>
+              <path d="M25 32h10v12H25z" fill="#e8f4fd"/>
+              <circle cx="30" cy="38" r="2" fill="#2d7dd2"/>
+            </svg>
+          </div>
+          <div class="banner-title">Northgate Academy</div>
+          <div class="banner-year">ESTABLISHED 1985 · KATHMANDU</div>
+          <ul class="banner-items">
+            <li>CBSE & Cambridge Curriculum</li>
+            <li>State-of-the-art STEM Labs</li>
+            <li>Olympic Sports Complex</li>
+            <li>100% University Placement</li>
+            <li>Merit & Need-based Scholarships</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <p class="section-tag">Why Choose Us</p>
+      <h2 class="section-title">A Complete Education<br>for the Modern World</h2>
+      <p class="section-desc">We go beyond textbooks to provide holistic education that prepares students for university, career, and life.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Academic Excellence</div>
+          <div class="feature-desc">Consistently ranked among the top schools with a 98% board exam pass rate and dozens of merit scholars each year.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔬</div>
+          <div class="feature-title">STEM Innovation Hub</div>
+          <div class="feature-desc">Fully equipped laboratories for physics, chemistry, biology, and computer science. Robotics and coding clubs available.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎭</div>
+          <div class="feature-title">Arts & Culture</div>
+          <div class="feature-desc">Rich programs in music, visual arts, drama, and cultural studies that nurture creativity and self-expression.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚽</div>
+          <div class="feature-title">Sports & Wellness</div>
+          <div class="feature-desc">Olympic-standard facilities including a swimming pool, football ground, basketball courts, and a fully equipped gym.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <div class="feature-title">Global Perspective</div>
+          <div class="feature-desc">Exchange programs, international competitions, and partnerships with schools in 12 countries around the world.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👨‍👩‍👧‍👦</div>
+          <div class="feature-title">Caring Community</div>
+          <div class="feature-desc">A safe, inclusive, and nurturing environment where every student is seen, supported, and celebrated.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply Banner -->
+  <section class="apply-banner">
+    <div class="container">
+      <div class="apply-deadline">📅 Admission Deadline: March 31, 2026</div>
+      <h2 class="apply-title">Ready to Join the<br>Northgate Family?</h2>
+      <p class="apply-desc">Applications are now open for the 2025–26 academic year. Limited seats available — apply early to secure your spot.</p>
+      <button class="btn-primary" onclick="showSection('admissions')" style="margin: 0 auto; display: inline-flex;">
+        🎓 Apply for Admission Now
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div id="about" class="section">
+  <div class="about-hero">
+    <h1>About Northgate Academy</h1>
+    <p>Forty years of nurturing brilliant minds and building exceptional character in the heart of Kathmandu.</p>
   </div>
 
-  <!-- Sounds -->
-  <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3"></audio>
-  <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+  <div class="about-stats-row container">
+    <div class="about-stat-item">
+      <span class="about-stat-num">1,800+</span>
+      <span class="about-stat-text">Enrolled Students</span>
+    </div>
+    <div class="about-stat-item">
+      <span class="about-stat-num">120+</span>
+      <span class="about-stat-text">Dedicated Faculty</span>
+    </div>
+    <div class="about-stat-item">
+      <span class="about-stat-num">98%</span>
+      <span class="about-stat-text">Board Pass Rate</span>
+    </div>
+    <div class="about-stat-item">
+      <span class="about-stat-num">40+</span>
+      <span class="about-stat-text">Years of Excellence</span>
+    </div>
+  </div>
 
-  <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const card = document.querySelector(".card");
-    const hoverSound = document.getElementById("hoverSound");
-    const yesSound = document.getElementById("yesSound");
+  <div class="about-content">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-tag">Our Story</p>
+          <h2 class="section-title">Rooted in Excellence,<br>Growing Toward the Future</h2>
+          <p>Founded in 1985 by visionary educator Dr. Arjun Sharma, Northgate Academy began as a small school with 80 students and a singular mission: provide world-class education to every child, regardless of background.</p>
+          <p>Today, we are one of Nepal's most respected educational institutions — home to over 1,800 students, 120 expert faculty members, and a legacy of graduates who lead in medicine, law, technology, business, and public service across the globe.</p>
+          <p>Our CBSE and Cambridge curricula are delivered with innovation and care, preparing students not just for exams, but for life's greatest challenges and opportunities.</p>
+          <div class="values-grid">
+            <div class="value-item">
+              <div class="value-label">🎯 Our Mission</div>
+              <div class="value-text">Empower every student to discover their purpose and reach their full potential.</div>
+            </div>
+            <div class="value-item">
+              <div class="value-label">🌟 Our Vision</div>
+              <div class="value-text">To be Nepal's leading institution for holistic, future-ready education.</div>
+            </div>
+            <div class="value-item">
+              <div class="value-label">💡 Innovation</div>
+              <div class="value-text">Embracing technology and modern pedagogy to keep learning engaging and effective.</div>
+            </div>
+            <div class="value-item">
+              <div class="value-label">🤝 Inclusivity</div>
+              <div class="value-text">Every student deserves a safe, welcoming, and supportive school environment.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="about-image-block">
+            <div class="big-stat">40+</div>
+            <div class="big-stat-label">Years of transforming lives through education</div>
+            <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border);">
+              <div style="font-size: 14px; color: var(--gray); line-height: 1.8;">
+                <strong style="color: var(--navy);">Accreditations & Affiliations</strong><br>
+                ✓ CBSE Affiliated (Since 1990)<br>
+                ✓ Cambridge International Partner<br>
+                ✓ ISO 9001:2015 Certified<br>
+                ✓ Nepal Education Board Recognized<br>
+                ✓ British Council Partner School
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    noBtn.addEventListener("mouseenter", () => {
-      hoverSound.currentTime = 0;
-      hoverSound.play();
+<!-- ===== ACADEMICS ===== -->
+<div id="academics" class="section">
+  <div class="academics-hero">
+    <h1>Academic Programs</h1>
+    <p>Rigorous, inspiring curricula designed to challenge students, ignite curiosity, and build lifelong learners.</p>
+  </div>
 
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+  <div class="programs">
+    <div class="container">
+      <p class="section-tag">Our Programs</p>
+      <h2 class="section-title" style="margin-bottom: 16px;">From Foundation to<br>Advanced Studies</h2>
+      <p class="section-desc">Our programs span from early childhood through senior secondary, each designed for the specific developmental needs of each age group.</p>
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-card-accent">🌱</div>
+          <div class="program-grade">Grades Pre-K – 2</div>
+          <div class="program-name">Early Childhood Program</div>
+          <div class="program-desc">Play-based learning that builds foundational literacy, numeracy, social skills, and a love of learning through exploration, creativity, and imagination.</div>
+          <div class="program-subjects">
+            <span class="subject-tag">Reading & Writing</span>
+            <span class="subject-tag">Math Foundations</span>
+            <span class="subject-tag">Art & Music</span>
+            <span class="subject-tag">Physical Ed</span>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-accent">📚</div>
+          <div class="program-grade">Grades 3 – 5</div>
+          <div class="program-name">Primary School</div>
+          <div class="program-desc">Building core academic skills with inquiry-based projects, structured literacy, and introduction to sciences and social studies in an engaging classroom environment.</div>
+          <div class="program-subjects">
+            <span class="subject-tag">English</span>
+            <span class="subject-tag">Mathematics</span>
+            <span class="subject-tag">Science</span>
+            <span class="subject-tag">Social Studies</span>
+            <span class="subject-tag">Languages</span>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-accent">🔭</div>
+          <div class="program-grade">Grades 6 – 8</div>
+          <div class="program-name">Middle School</div>
+          <div class="program-desc">Challenging students with departmentalized learning, critical thinking projects, electives, and preparation for the demands of high school academics and beyond.</div>
+          <div class="program-subjects">
+            <span class="subject-tag">Advanced Sciences</span>
+            <span class="subject-tag">Algebra</span>
+            <span class="subject-tag">History</span>
+            <span class="subject-tag">Coding</span>
+            <span class="subject-tag">French/Nepali</span>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card-accent">🎓</div>
+          <div class="program-grade">Grades 9 – 12</div>
+          <div class="program-name">Senior Secondary (CBSE / Cambridge)</div>
+          <div class="program-desc">University-preparatory program with choice of Science, Commerce, or Humanities streams. Expert coaching, career counseling, and exam preparation included.</div>
+          <div class="program-subjects">
+            <span class="subject-tag">Physics / Chemistry</span>
+            <span class="subject-tag">Biology</span>
+            <span class="subject-tag">Mathematics</span>
+            <span class="subject-tag">Economics</span>
+            <span class="subject-tag">Computer Sci.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      const maxX = cardRect.width - btnRect.width - 10;
-      const maxY = cardRect.height - btnRect.height - 10;
+  <section class="features" style="padding-top: 0;">
+    <div class="container">
+      <p class="section-tag">Beyond Classrooms</p>
+      <h2 class="section-title" style="margin-bottom: 16px;">Co-Curricular Excellence</h2>
+      <p class="section-desc">Our programs extend well beyond academic subjects to develop the whole child.</p>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon">🤖</div><div class="feature-title">Robotics & AI Club</div><div class="feature-desc">Hands-on engineering and programming challenges that prepare students for the future of technology.</div></div>
+        <div class="feature-card"><div class="feature-icon">🎻</div><div class="feature-title">Music & Performing Arts</div><div class="feature-desc">Orchestra, choir, band, drama, and dance programs with annual public performances.</div></div>
+        <div class="feature-card"><div class="feature-icon">📰</div><div class="feature-title">Student Journalism</div><div class="feature-desc">A student-run newspaper and video channel teaching real-world communication and media skills.</div></div>
+      </div>
+    </div>
+  </section>
+</div>
 
-      noBtn.style.left = Math.random() * maxX + "px";
-      noBtn.style.top = Math.random() * maxY + "px";
-    });
+<!-- ===== ADMISSIONS ===== -->
+<div id="admissions" class="section">
+  <div class="admissions-hero">
+    <h1>Apply for Admission</h1>
+    <p>Begin your Northgate journey. Fill out the form below and we'll guide you through every step of the process.</p>
+  </div>
 
-    yesBtn.addEventListener("click", () => {
+  <div class="admissions-content">
+    <div class="container">
+      <div class="admissions-layout">
+        <div class="form-card">
+          <h2 class="form-title">Online Admission Form</h2>
+          <p class="form-subtitle">Academic Year 2025–2026 · Fields marked <span class="required">*</span> are required</p>
 
-      yesSound.play();
+          <form id="admissionForm" onsubmit="submitForm(event)">
+            <!-- Student Info -->
+            <div class="form-section-label">Student Information</div>
 
-      confetti({
-        particleCount: 260,
-        spread: 120,
-        origin: { y: 0.65 }
-      });
+            <div class="form-row">
+              <div class="form-group">
+                <label>Student Full Name <span class="required">*</span></label>
+                <input type="text" name="studentName" placeholder="As on birth certificate" required>
+              </div>
+              <div class="form-group">
+                <label>Date of Birth <span class="required">*</span></label>
+                <input type="date" name="dob" required>
+              </div>
+            </div>
 
-      setTimeout(() => {
-        window.location.href = "index2.html";
-      }, 1200);
+            <div class="form-row">
+              <div class="form-group">
+                <label>Gender <span class="required">*</span></label>
+                <select name="gender" required>
+                  <option value="">Select gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Grade Applying For <span class="required">*</span></label>
+                <select name="grade" required>
+                  <option value="">Select grade</option>
+                  <option>Pre-Kindergarten</option>
+                  <option>Kindergarten</option>
+                  <option>Grade 1</option>
+                  <option>Grade 2</option>
+                  <option>Grade 3</option>
+                  <option>Grade 4</option>
+                  <option>Grade 5</option>
+                  <option>Grade 6</option>
+                  <option>Grade 7</option>
+                  <option>Grade 8</option>
+                  <option>Grade 9 (CBSE)</option>
+                  <option>Grade 9 (Cambridge)</option>
+                  <option>Grade 10 (CBSE)</option>
+                  <option>Grade 10 (Cambridge)</option>
+                  <option>Grade 11 – Science</option>
+                  <option>Grade 11 – Commerce</option>
+                  <option>Grade 11 – Humanities</option>
+                  <option>Grade 12 – Science</option>
+                  <option>Grade 12 – Commerce</option>
+                  <option>Grade 12 – Humanities</option>
+                </select>
+              </div>
+            </div>
 
-    });
+            <div class="form-group">
+              <label>Previous School Name</label>
+              <input type="text" name="prevSchool" placeholder="Name of last attended school">
+            </div>
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 22 + 14 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-      heart.style.opacity = Math.random() * 0.5 + 0.4;
+            <!-- Parent/Guardian Info -->
+            <div class="form-section-label">Parent / Guardian Information</div>
 
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+            <div class="form-row">
+              <div class="form-group">
+                <label>Parent / Guardian Name <span class="required">*</span></label>
+                <input type="text" name="parentName" placeholder="Full name" required>
+              </div>
+              <div class="form-group">
+                <label>Relationship to Student</label>
+                <select name="relation">
+                  <option value="">Select relationship</option>
+                  <option>Mother</option>
+                  <option>Father</option>
+                  <option>Guardian</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Phone Number <span class="required">*</span></label>
+                <input type="tel" name="phone" placeholder="+977 98xxxxxxxx" required>
+              </div>
+              <div class="form-group">
+                <label>Email Address <span class="required">*</span></label>
+                <input type="email" name="email" placeholder="your@email.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Residential Address <span class="required">*</span></label>
+              <textarea name="address" placeholder="Street, Ward, Municipality, District, Province" required></textarea>
+            </div>
+
+            <!-- Documents -->
+            <div class="form-section-label">Required Documents</div>
+
+            <div class="form-group">
+              <label>Upload Documents</label>
+              <div class="file-upload" onclick="document.getElementById('docUpload').click()">
+                <input type="file" id="docUpload" name="documents" multiple accept=".pdf,.jpg,.png,.doc,.docx" onchange="updateFileLabel(this)">
+                <div class="file-icon" id="fileIcon">📁</div>
+                <div class="file-text" id="fileText"><strong>Click to upload</strong> or drag and drop</div>
+                <div class="file-hint">Birth certificate, report cards, transfer certificate, ID (PDF, JPG, PNG · Max 10MB each)</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Additional Information / Special Needs</label>
+              <textarea name="notes" placeholder="Any medical conditions, learning needs, or other information we should know..." style="min-height: 80px;"></textarea>
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 8px;">
+              <input type="checkbox" id="terms" name="terms" required style="width: auto; margin-top: 3px;">
+              <label for="terms" style="font-size: 13px; color: var(--gray); font-weight: 400; cursor: pointer;">
+                I confirm that all information provided is accurate and complete. I agree to the school's <a href="#" style="color: var(--sky);">Terms & Conditions</a> and <a href="#" style="color: var(--sky);">Privacy Policy</a>. <span class="required">*</span>
+              </label>
+            </div>
+
+            <button type="submit" class="form-submit">
+              <span>🎓</span> Submit Application
+            </button>
+            <p class="form-note">You will receive a confirmation email with your application reference number within 24 hours.</p>
+          </form>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <div class="deadline-card">
+            <div class="deadline-label">Application Deadline</div>
+            <div class="deadline-date">March 31</div>
+            <div class="deadline-year">2026 · Academic Year 2025–26</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-title">📋 Admission Process</div>
+            <ul class="timeline">
+              <li>
+                <div class="tl-dot">1</div>
+                <div class="tl-info">
+                  <strong>Submit Application</strong>
+                  <span>Complete this online form</span>
+                </div>
+              </li>
+              <li>
+                <div class="tl-dot">2</div>
+                <div class="tl-info">
+                  <strong>Document Review</strong>
+                  <span>2–3 business days</span>
+                </div>
+              </li>
+              <li>
+                <div class="tl-dot">3</div>
+                <div class="tl-info">
+                  <strong>Entrance Assessment</strong>
+                  <span>Grades 3+ only</span>
+                </div>
+              </li>
+              <li>
+                <div class="tl-dot">4</div>
+                <div class="tl-info">
+                  <strong>Interview</strong>
+                  <span>Student & parent meeting</span>
+                </div>
+              </li>
+              <li>
+                <div class="tl-dot">5</div>
+                <div class="tl-info">
+                  <strong>Admission Decision</strong>
+                  <span>Offer letter via email</span>
+                </div>
+              </li>
+              <li>
+                <div class="tl-dot">6</div>
+                <div class="tl-info">
+                  <strong>Fee Payment & Enrollment</strong>
+                  <span>Secure your seat</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-title">📄 Required Documents</div>
+            <ul class="req-list">
+              <li>Birth Certificate (original or copy)</li>
+              <li>Last 2 years' report cards</li>
+              <li>Transfer / Leaving Certificate</li>
+              <li>Passport-size photographs (x4)</li>
+              <li>Parent/Guardian ID proof</li>
+              <li>Residence proof</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-title">💰 Fee Structure</div>
+            <div style="font-size: 13px; color: var(--gray); line-height: 2;">
+              <div style="display: flex; justify-content: space-between;"><span>Registration Fee</span><strong style="color: var(--navy);">NPR 2,000</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>Tuition (Monthly)</span><strong style="color: var(--navy);">NPR 8,000+</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>Annual Fee</span><strong style="color: var(--navy);">NPR 15,000</strong></div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);">
+                <span style="color: var(--sky);">🎓 Merit scholarships available — ask during interview</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card" style="background: var(--ice);">
+            <div class="info-card-title">📞 Need Help?</div>
+            <p style="font-size: 13px; color: var(--gray); margin-bottom: 12px;">Our admissions team is happy to answer your questions.</p>
+            <p style="font-size: 14px; color: var(--navy); font-weight: 500;">+977-1-4XXXXXX</p>
+            <p style="font-size: 14px; color: var(--sky);">admissions@northgateacademy.edu.np</p>
+            <p style="font-size: 12px; color: var(--gray); margin-top: 8px;">Mon–Fri: 8:00 AM – 4:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div id="contact" class="section">
+  <div class="contact-hero">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you. Reach out to our team and we'll respond within one business day.</p>
+  </div>
+
+  <div class="contact-content">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <p class="section-tag">Contact Information</p>
+          <h2 class="section-title" style="margin-bottom: 40px;">We're Here<br>to Help</h2>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-info-label">Address</div>
+              <div class="contact-info-value">Northgate Academy<br>Baluwatar, Ward 4<br>Kathmandu 44600, Nepal</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-info-label">Phone Numbers</div>
+              <div class="contact-info-value">
+                <a href="tel:+97714123456">+977-1-4123456</a> (Main Office)<br>
+                <a href="tel:+97714123457">+977-1-4123457</a> (Admissions)<br>
+                <a href="tel:+9779812345678">+977-9812345678</a> (Mobile)
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-info-label">Email Addresses</div>
+              <div class="contact-info-value">
+                <a href="mailto:info@northgateacademy.edu.np">info@northgateacademy.edu.np</a><br>
+                <a href="mailto:admissions@northgateacademy.edu.np">admissions@northgateacademy.edu.np</a><br>
+                <a href="mailto:principal@northgateacademy.edu.np">principal@northgateacademy.edu.np</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-info-label">Office Hours</div>
+              <div class="contact-info-value">
+                Monday – Friday: 7:30 AM – 5:00 PM<br>
+                Saturday: 9:00 AM – 1:00 PM<br>
+                Sunday: Closed
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;">
+            <a href="#" style="background: var(--ice); color: var(--blue); padding: 10px 20px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+              📘 Facebook
+            </a>
+            <a href="#" style="background: var(--ice); color: var(--blue); padding: 10px 20px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+              📸 Instagram
+            </a>
+            <a href="#" style="background: var(--ice); color: var(--blue); padding: 10px 20px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+              📺 YouTube
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.6967282741847!2d85.32423!3d27.72048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb190038c55c01%3A0xfab9db2752da1de4!2sBaluwatar%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1620000000000!5m2!1sen!2snp"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div style="margin-top: 24px;">
+            <div class="info-card" style="border-radius: 16px;">
+              <div class="info-card-title">🚌 Getting Here</div>
+              <p style="font-size: 14px; color: var(--gray); line-height: 1.8;">
+                <strong style="color: var(--navy);">By Bus:</strong> Routes 22, 44, and 58 stop at Baluwatar Chowk (2 min walk)<br>
+                <strong style="color: var(--navy);">By Car:</strong> Ample parking available on campus — enter via Gate B on Baluwatar Road<br>
+                <strong style="color: var(--navy);">By Taxi:</strong> Ride-shares drop off at the main entrance on School Marg
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom: 0;">
+        <div class="logo-mark" style="background: linear-gradient(135deg, #2d7dd2, #7dd3fc);">N</div>
+        <div class="logo-text">
+          <span class="logo-name" style="color: white;">Northgate Academy</span>
+          <span class="logo-sub">Est. 1985</span>
+        </div>
+      </div>
+      <p>Nurturing brilliant minds and compassionate hearts since 1985. A school where every student discovers their potential and every family finds a community.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <ul class="footer-links">
+        <li><a onclick="showSection('home')">Home</a></li>
+        <li><a onclick="showSection('about')">About Us</a></li>
+        <li><a onclick="showSection('academics')">Academics</a></li>
+        <li><a onclick="showSection('admissions')">Admissions</a></li>
+        <li><a onclick="showSection('contact')">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Admissions</div>
+      <ul class="footer-links">
+        <li><a onclick="showSection('admissions')">Apply Online</a></li>
+        <li><a href="#">Fee Structure</a></li>
+        <li><a href="#">Scholarships</a></li>
+        <li><a href="#">Entrance Exam</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+97714123456">+977-1-4123456</a></li>
+        <li><a href="mailto:info@northgateacademy.edu.np">info@northgateacademy.edu.np</a></li>
+        <li><a href="#">Baluwatar, Kathmandu</a></li>
+        <li><a href="#">Mon–Fri: 7:30AM–5PM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Northgate Academy. All rights reserved.</div>
+    <div class="footer-tagline">"Knowledge, Character, Service"</div>
+  </div>
+</footer>
+
+<!-- Success Modal -->
+<div class="success-overlay" id="successOverlay" onclick="closeSuccess(event)">
+  <div class="success-modal">
+    <div class="success-icon">🎓</div>
+    <h2 class="success-title">Application Submitted!</h2>
+    <p class="success-msg">Thank you for applying to Northgate Academy. Your application has been received and is under review. We're excited to learn more about your family!</p>
+    <div class="success-ref" id="successRef">Application Reference: NGA-2026-XXXX</div>
+    <p style="font-size: 13px; color: var(--gray); margin-bottom: 24px;">A confirmation email has been sent to your provided email address. Our admissions team will contact you within 2–3 business days.</p>
+    <button class="btn-primary" style="background: linear-gradient(135deg, var(--blue), var(--sky)); color: white; border: none; margin: 0 auto;" onclick="closeSuccess()">
+      Done ✓
+    </button>
+  </div>
+</div>
+
+<script>
+  // Section navigation
+  function showSection(section) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(section).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + section);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Close mobile menu
+    document.getElementById('navLinks').classList.remove('open');
+    return false;
+  }
+
+  // Scrolled nav
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // File upload label
+  function updateFileLabel(input) {
+    const files = input.files;
+    if (files.length > 0) {
+      document.getElementById('fileIcon').textContent = '✅';
+      document.getElementById('fileText').innerHTML = `<strong>${files.length} file(s) selected</strong>`;
+      let names = Array.from(files).map(f => f.name).join(', ');
+      document.querySelector('.file-hint').textContent = names;
     }
+  }
 
-    setInterval(createHeart, 380);
-  </script>
+  // Form submission (simulated backend)
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('admissionForm');
+    const btn = form.querySelector('.form-submit');
 
+    // Animate button
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+    btn.style.opacity = '0.8';
+
+    // Simulate API call
+    setTimeout(() => {
+      const refNum = 'NGA-2026-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('successRef').textContent = 'Application Reference: ' + refNum;
+      document.getElementById('successOverlay').classList.add('show');
+      form.reset();
+      document.getElementById('fileIcon').textContent = '📁';
+      document.getElementById('fileText').innerHTML = '<strong>Click to upload</strong> or drag and drop';
+      document.querySelector('.file-hint').textContent = 'Birth certificate, report cards, transfer certificate, ID (PDF, JPG, PNG · Max 10MB each)';
+      btn.innerHTML = '<span>🎓</span> Submit Application';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }, 1800);
+  }
+
+  function closeSuccess(event) {
+    if (!event || event.target === document.getElementById('successOverlay')) {
+      document.getElementById('successOverlay').classList.remove('show');
+    }
+  }
+
+  // Drag and drop on file upload
+  const fileUpload = document.querySelector('.file-upload');
+  if (fileUpload) {
+    fileUpload.addEventListener('dragover', e => { e.preventDefault(); fileUpload.style.borderColor = 'var(--sky)'; });
+    fileUpload.addEventListener('dragleave', () => { fileUpload.style.borderColor = ''; });
+    fileUpload.addEventListener('drop', e => {
+      e.preventDefault();
+      fileUpload.style.borderColor = '';
+      const dt = e.dataTransfer;
+      document.getElementById('docUpload').files = dt.files;
+      updateFileLabel(document.getElementById('docUpload'));
+    });
+  }
+
+  // Animate feature cards on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .program-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(24px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s';
+    observer.observe(card);
+  });
+</script>
 </body>
 </html>
